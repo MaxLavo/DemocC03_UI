@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,33 +21,41 @@ namespace DemocC03_UI
     /// </summary>
     public partial class MainWindow : Window
     {
-        public List<string> Profs { get; set; }
+        public ObservableCollection<Prof> Profs { get; set; }
         public MainWindow()
         {
             InitializeComponent();
-            Profs = new List<string>() {
-        "Luc Forcier",
-        "Marco Guay",
-        "Noémie Rochette",
-        "Ridha Louati",
-        "Gilles Portelance",
-        "Xavier Samuel Huppé"
-        };
-            panneau.DataContext = this;
+            Profs = new ObservableCollection<Prof>() {
+        new Prof("Luc Forcier"),
+        new Prof("Marco Guay"),
+        new Prof("Noémie Rochette"),
+        new Prof("Ridha Louati"),
+        new Prof("Gilles Portelance")
+    };
+            listeProfs.ItemsSource = Profs;
         }
+
 
 
         private void BtnSupprimerProf_Click(object sender, RoutedEventArgs e)
         {
-            string nomProf = listeProfs.SelectedItem as string;
-            if (nomProf != null) // non-requis
-                Profs.Remove(nomProf);
+            Prof unProf = listeProfs.SelectedItem as Prof;
+            Profs.Remove(unProf);
         }
 
         private void BtnAjouterNouveauProf_Click(object sender, RoutedEventArgs e)
         {
-            Profs.Add(tbNom.Text);
+            Profs.Add(new Prof(tbNom.Text));
         }
+
+
+        private void BtnMajProfSelectionne_Click(object sender, RoutedEventArgs e)
+        {
+            Prof unProf = listeProfs.SelectedItem as Prof;
+            if (unProf != null)
+                unProf.NomProf = tbNom.Text;
+        }
+
 
     }
 }
