@@ -38,12 +38,15 @@ namespace DemocC03_UI
 
         private void BtnSupprimerProf_Click(object sender, RoutedEventArgs e)
         {
-
+            string nomProf = listeProfs.SelectedItem as string;
+            if (nomProf != null) // non-requis
+                Profs.Remove(nomProf);
         }
 
         private void BtnAjouterNouveauProf_Click(object sender, RoutedEventArgs e)
         {
-
+            Profs.Add(tbNom.Text);
         }
+
     }
 }
