@@ -1,0 +1,25 @@
+﻿<Window x:Class="DemocC03_UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemocC03_UI"
+        mc:Ignorable="d"
+        Title="Démo binding collections" SizeToContent="Height" Width="400">
+    <StackPanel Name="panneau">
+        <TextBlock Text="Profs d'informatique:" FontSize="18"/>
+        <ListBox Name="listeProfs"
+          ItemsSource="{Binding Path=Profs}" 
+          Height="140" 
+          Margin="20,0,20,0"/>
+
+        <Button Name="btnSupprimerProf" Content="Supprimer le prof sélectionné" 
+            Click="BtnSupprimerProf_Click"/>
+        <DockPanel Margin="0,15">
+            <TextBlock Text="Nouveau prof => " DockPanel.Dock="Left"/>
+            <Button Name="btnAjouterNouveauProf" Click="BtnAjouterNouveauProf_Click" 
+                DockPanel.Dock="Right" Margin="5,0,0,0">Ajouter</Button>
+            <TextBox Name="tbNom"/>
+        </DockPanel>
+    </StackPanel>
+</Window>
